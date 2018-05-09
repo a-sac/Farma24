@@ -1,0 +1,58 @@
+﻿@model Farma24.Models.Utilizador
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Utilizador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iban)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.role)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.email }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

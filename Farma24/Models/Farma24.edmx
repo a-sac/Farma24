@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Farma24DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Encomenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="morada" Type="int" Nullable="false" />
+          <Property Name="inicio" Type="datetime" Nullable="false" />
+          <Property Name="fim" Type="datetime" />
+          <Property Name="custoTotal" Type="float" Nullable="false" />
+          <Property Name="detalhes" Type="nvarchar" MaxLength="600" />
+          <Property Name="Fatura_referencia" Type="int" />
+        </EntityType>
+        <EntityType Name="Encomenda_has_Produto">
+          <Key>
+            <PropertyRef Name="Encomenda" />
+            <PropertyRef Name="Produto" />
+          </Key>
+          <Property Name="Encomenda" Type="int" Nullable="false" />
+          <Property Name="Produto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="custo" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fatura">
+          <Key>
+            <PropertyRef Name="referencia" />
+          </Key>
+          <Property Name="referencia" Type="int" Nullable="false" />
+          <Property Name="metodoPagamento" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Morada">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="cidade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="codPostal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rua" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="porta" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Utilizador_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="codBarras" />
+          </Key>
+          <Property Name="codBarras" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="preco" Type="float" Nullable="false" />
+          <Property Name="descricao" Type="nvarchar" MaxLength="600" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="iban" Type="int" />
+          <Property Name="contacto" Type="int" />
+          <Property Name="role" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Encomenda_Fatura">
+          <End Role="Fatura" Type="Self.Fatura" Multiplicity="0..1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fatura">
+              <PropertyRef Name="referencia" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="Fatura_referencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Encomenda">
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encomenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Encomenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="codBarras" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Morada">
+          <End Role="Morada" Type="Self.Morada" Multiplicity="1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Morada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="morada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Utilizador">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="0..1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Morada_Utilizador">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Morada" Type="Self.Morada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Morada">
+              <PropertyRef Name="Utilizador_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Farma24DBModelStoreContainer">
+          <EntitySet Name="Encomenda" EntityType="Self.Encomenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encomenda_has_Produto" EntityType="Self.Encomenda_has_Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fatura" EntityType="Self.Fatura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Morada" EntityType="Self.Morada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Encomenda_Fatura" Association="Self.FK_Encomenda_Fatura">
+            <End Role="Fatura" EntitySet="Fatura" />
+            <End Role="Encomenda" EntitySet="Encomenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Encomenda" Association="Self.FK_Encomenda_has_Produto_Encomenda">
+            <End Role="Encomenda" EntitySet="Encomenda" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Produto" Association="Self.FK_Encomenda_has_Produto_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Morada" Association="Self.FK_Encomenda_Morada">
+            <End Role="Morada" EntitySet="Morada" />
+            <End Role="Encomenda" EntitySet="Encomenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Utilizador" Association="Self.FK_Encomenda_Utilizador">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Encomenda" EntitySet="Encomenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Morada_Utilizador" Association="Self.FK_Morada_Utilizador">
+            <End Role="Utilizador" EntitySet="Utilizador" />
+            <End Role="Morada" EntitySet="Morada" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Farma24DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Encomenda">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="morada" Type="Int32" Nullable="false" />
+          <Property Name="inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fim" Type="DateTime" Precision="3" />
+          <Property Name="custoTotal" Type="Double" Nullable="false" />
+          <Property Name="detalhes" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Fatura_referencia" Type="Int32" />
+          <NavigationProperty Name="Fatura" Relationship="Self.FK_Encomenda_Fatura" FromRole="Encomenda" ToRole="Fatura" />
+          <NavigationProperty Name="Encomenda_has_Produto" Relationship="Self.FK_Encomenda_has_Produto_Encomenda" FromRole="Encomenda" ToRole="Encomenda_has_Produto" />
+          <NavigationProperty Name="Morada1" Relationship="Self.FK_Encomenda_Morada" FromRole="Encomenda" ToRole="Morada" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK_Encomenda_Utilizador" FromRole="Encomenda" ToRole="Utilizador" />
+        </EntityType>
+        <EntityType Name="Encomenda_has_Produto">
+          <Key>
+            <PropertyRef Name="Encomenda" />
+            <PropertyRef Name="Produto" />
+          </Key>
+          <Property Name="Encomenda" Type="Int32" Nullable="false" />
+          <Property Name="Produto" Type="Int32" Nullable="false" />
+          <Property Name="quantidade" Type="Int32" Nullable="false" />
+          <Property Name="custo" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Encomenda1" Relationship="Self.FK_Encomenda_has_Produto_Encomenda" FromRole="Encomenda_has_Produto" ToRole="Encomenda" />
+          <NavigationProperty Name="Produto1" Relationship="Self.FK_Encomenda_has_Produto_Produto" FromRole="Encomenda_has_Produto" ToRole="Produto" />
+        </EntityType>
+        <EntityType Name="Fatura">
+          <Key>
+            <PropertyRef Name="referencia" />
+          </Key>
+          <Property Name="referencia" Type="Int32" Nullable="false" />
+          <Property Name="metodoPagamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Encomendas" Relationship="Self.FK_Encomenda_Fatura" FromRole="Fatura" ToRole="Encomenda" />
+        </EntityType>
+        <EntityType Name="Morada">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="codPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rua" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="porta" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Utilizador_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Encomendas" Relationship="Self.FK_Encomenda_Morada" FromRole="Morada" ToRole="Encomenda" />
+          <NavigationProperty Name="Utilizador" Relationship="Self.FK_Morada_Utilizador" FromRole="Morada" ToRole="Utilizador" />
+        </EntityType>
+        <EntityType Name="Produto">
+          <Key>
+            <PropertyRef Name="codBarras" />
+          </Key>
+          <Property Name="codBarras" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="preco" Type="Double" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Encomenda_has_Produto" Relationship="Self.FK_Encomenda_has_Produto_Produto" FromRole="Produto" ToRole="Encomenda_has_Produto" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="iban" Type="Int32" />
+          <Property Name="contacto" Type="Int32" />
+          <Property Name="role" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Encomendas" Relationship="Self.FK_Encomenda_Utilizador" FromRole="Utilizador" ToRole="Encomenda" />
+          <NavigationProperty Name="Moradas" Relationship="Self.FK_Morada_Utilizador" FromRole="Utilizador" ToRole="Morada" />
+        </EntityType>
+        <Association Name="FK_Encomenda_Fatura">
+          <End Role="Fatura" Type="Self.Fatura" Multiplicity="0..1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fatura">
+              <PropertyRef Name="referencia" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="Fatura_referencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Encomenda">
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encomenda">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Encomenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Morada">
+          <End Role="Morada" Type="Self.Morada" Multiplicity="1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Morada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="morada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Utilizador">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="0..1" />
+          <End Role="Encomenda" Type="Self.Encomenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Encomenda">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Produto">
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produto">
+              <PropertyRef Name="codBarras" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Morada_Utilizador">
+          <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+          <End Role="Morada" Type="Self.Morada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizador">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Morada">
+              <PropertyRef Name="Utilizador_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Farma24DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Encomendas" EntityType="Self.Encomenda" />
+          <EntitySet Name="Encomenda_has_Produto" EntityType="Self.Encomenda_has_Produto" />
+          <EntitySet Name="Faturas" EntityType="Self.Fatura" />
+          <EntitySet Name="Moradas" EntityType="Self.Morada" />
+          <EntitySet Name="Produtoes" EntityType="Self.Produto" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Utilizadors" EntityType="Self.Utilizador" />
+          <AssociationSet Name="FK_Encomenda_Fatura" Association="Self.FK_Encomenda_Fatura">
+            <End Role="Fatura" EntitySet="Faturas" />
+            <End Role="Encomenda" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Encomenda" Association="Self.FK_Encomenda_has_Produto_Encomenda">
+            <End Role="Encomenda" EntitySet="Encomendas" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Morada" Association="Self.FK_Encomenda_Morada">
+            <End Role="Morada" EntitySet="Moradas" />
+            <End Role="Encomenda" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Utilizador" Association="Self.FK_Encomenda_Utilizador">
+            <End Role="Utilizador" EntitySet="Utilizadors" />
+            <End Role="Encomenda" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Produto" Association="Self.FK_Encomenda_has_Produto_Produto">
+            <End Role="Produto" EntitySet="Produtoes" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Morada_Utilizador" Association="Self.FK_Morada_Utilizador">
+            <End Role="Utilizador" EntitySet="Utilizadors" />
+            <End Role="Morada" EntitySet="Moradas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Farma24DBModelStoreContainer" CdmEntityContainer="Farma24DBEntities">
+          <EntitySetMapping Name="Encomendas">
+            <EntityTypeMapping TypeName="Farma24DBModel.Encomenda">
+              <MappingFragment StoreEntitySet="Encomenda">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="morada" ColumnName="morada" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="fim" ColumnName="fim" />
+                <ScalarProperty Name="custoTotal" ColumnName="custoTotal" />
+                <ScalarProperty Name="detalhes" ColumnName="detalhes" />
+                <ScalarProperty Name="Fatura_referencia" ColumnName="Fatura_referencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encomenda_has_Produto">
+            <EntityTypeMapping TypeName="Farma24DBModel.Encomenda_has_Produto">
+              <MappingFragment StoreEntitySet="Encomenda_has_Produto">
+                <ScalarProperty Name="Encomenda" ColumnName="Encomenda" />
+                <ScalarProperty Name="Produto" ColumnName="Produto" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="custo" ColumnName="custo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faturas">
+            <EntityTypeMapping TypeName="Farma24DBModel.Fatura">
+              <MappingFragment StoreEntitySet="Fatura">
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="metodoPagamento" ColumnName="metodoPagamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Moradas">
+            <EntityTypeMapping TypeName="Farma24DBModel.Morada">
+              <MappingFragment StoreEntitySet="Morada">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="codPostal" ColumnName="codPostal" />
+                <ScalarProperty Name="rua" ColumnName="rua" />
+                <ScalarProperty Name="porta" ColumnName="porta" />
+                <ScalarProperty Name="Utilizador_email" ColumnName="Utilizador_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtoes">
+            <EntityTypeMapping TypeName="Farma24DBModel.Produto">
+              <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="codBarras" ColumnName="codBarras" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Farma24DBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizadors">
+            <EntityTypeMapping TypeName="Farma24DBModel.Utilizador">
+              <MappingFragment StoreEntitySet="Utilizador">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="iban" ColumnName="iban" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
