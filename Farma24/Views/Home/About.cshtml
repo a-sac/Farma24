@@ -1,7 +1,70 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="w3-content w3-display-container">
+    <img style="width:100%" class="mySlides" src="~/Content/Images/rsz_building.png">
+    <img style="width:100%" class="mySlides" src="~/Content/Images/rsz_pills.jpg">
+    <img style="width:100%" class="mySlides" src="~/Content/Images/rsz_scooter.jpg">
+    <button class="w3-button w3-display-left" style="background-color: #39dd90" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-display-right" style="background-color: #39dd90" onclick="plusDivs(+1)">&#10095;</button>
+    <div class="w3-center w3-display-bottommiddle" style="width:100%">
+        <span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
+        <span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
+        <span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
+    </div>
+</div>
+
+<div style="text-align: center">
+    <h1 style="color: #297a6d;"><b>Farma24</b></h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+</div>
+
+<div class=".container">
+    <div class="col-md-12" style="text-align: center">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+    </div>
+</div>
+
+<script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function currentDiv(n) {
+            showDivs(slideIndex = n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" w3-white", "");
+            }
+            x[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " w3-white";
+        }
+</script>
+
