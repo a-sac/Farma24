@@ -1,0 +1,17 @@
+﻿@model Farma24.Models.Utilizador
+@if (!Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            email: <input type="text" name="email" required/>
+            Password: <input type="text" name="password" required/>
+        </fieldset>
+        <input type="submit" value="Submit"/>
+
+    }
+} else {
+<span>Hello</span> <strong> @Html.Encode(User.Identity.Name) </strong>
+    @Html.ActionLink("Sign Out","Logout","Login")
+}

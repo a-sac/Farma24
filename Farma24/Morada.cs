@@ -7,33 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Farma24.Models
+namespace Farma24
 {
     using System;
     using System.Collections.Generic;
+    using Models;
     
-    public partial class Encomenda
+    public partial class Morada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Encomenda()
+        public Morada()
         {
-            this.Encomenda_has_Produto = new HashSet<Encomenda_has_Produto>();
+            this.Encomendas = new HashSet<Encomenda>();
         }
     
         public int id { get; set; }
-        public string estado { get; set; }
-        public string email { get; set; }
-        public int morada { get; set; }
-        public System.DateTime inicio { get; set; }
-        public Nullable<System.DateTime> fim { get; set; }
-        public double custoTotal { get; set; }
-        public string detalhes { get; set; }
-        public Nullable<int> Fatura_referencia { get; set; }
+        public string cidade { get; set; }
+        public string codPostal { get; set; }
+        public string rua { get; set; }
+        public string porta { get; set; }
+        public string Utilizador_email { get; set; }
     
-        public virtual Fatura Fatura { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Encomenda_has_Produto> Encomenda_has_Produto { get; set; }
-        public virtual Morada Morada1 { get; set; }
+        public virtual ICollection<Encomenda> Encomendas { get; set; }
         public virtual Utilizador Utilizador { get; set; }
     }
 }

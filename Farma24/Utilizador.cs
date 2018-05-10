@@ -7,23 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Farma24.Models
+namespace Farma24
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Fatura
+    public partial class Utilizador
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Fatura()
+        public Utilizador()
         {
             this.Encomendas = new HashSet<Encomenda>();
+            this.Moradas = new HashSet<Morada>();
         }
     
-        public int referencia { get; set; }
-        public string metodoPagamento { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string nome { get; set; }
+        public Nullable<int> iban { get; set; }
+        public Nullable<int> contacto { get; set; }
+        public string role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Encomenda> Encomendas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Morada> Moradas { get; set; }
     }
 }
