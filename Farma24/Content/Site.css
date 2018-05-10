@@ -12,19 +12,44 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
-.navbar-custom {
-    background-color: #39dd90;
-    color: #ffffff;
-    border-radius: 0;
+a.classname {
+    background: url(~/Content/Images/logo.png);
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
 }
 
-.navbar-custom .navbar-nav > li > a {
-    color:#fff;
+.mySlides {
+    display: none
 }
+
+.w3-left, .w3-right, .w3-badge {
+    cursor: pointer
+}
+
+.w3-badge {
+    height: 10px;
+    width: 10px;
+    padding: 0
+}
+
+.navbar-custom {
+    background-color: white;
+    color: #297a6d;
+    border-radius: 0;
+    border-bottom-color: #297a6d;
+    opacity: 0.85;
+}
+
+    .navbar-custom .navbar-nav > li > a {
+        color: #297a6d;
+    }
 
 .navbar-custom .navbar-nav > .active > a {
     color: #ffffff;
@@ -37,7 +62,8 @@
     .navbar-custom .navbar-nav > .active > a:focus,
     .navbar-custom .navbar-nav > .open > a {
         text-decoration: none;
-        background-color: #297a6d;
+        background-color: #39dd90;
+        color: #ffffff;
     }
 
 .navbar-custom .navbar-brand {
