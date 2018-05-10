@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Farma24.Models
+namespace Farma24
 {
     using System;
     using System.Collections.Generic;

@@ -160,47 +160,48 @@
     <Compile Include="Controllers\Encomenda_has_ProdutoController.cs" />
     <Compile Include="Controllers\FaturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MoradasController.cs" />
     <Compile Include="Controllers\ProdutoesController.cs" />
     <Compile Include="Controllers\UtilizadorsController.cs" />
-    <Compile Include="Models\Encomenda.cs">
+    <Compile Include="Encomenda.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Encomenda_has_Produto.cs">
+    <Compile Include="Encomenda_has_Produto.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Farma24.Context.cs">
+    <Compile Include="Farma24.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Farma24.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Farma24.cs">
+    <Compile Include="Farma24.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Farma24.Designer.cs">
+    <Compile Include="Farma24.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Farma24.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Fatura.cs">
+    <Compile Include="Fatura.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Morada.cs">
+    <Compile Include="Helper\LoginHelper.cs" />
+    <Compile Include="Helper\UtilizadorHelper.cs" />
+    <Compile Include="Models\Utilizador.cs" />
+    <Compile Include="Morada.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Produto.cs">
+    <Compile Include="Produto.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>Farma24.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Utilizador.cs">
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -209,12 +210,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Models\Farma24.Context.tt">
+    <Content Include="Farma24.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Farma24.Context.cs</LastGenOutput>
       <DependentUpon>Farma24.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Farma24.tt">
+    <Content Include="Farma24.edmx.sql" />
+    <Content Include="Farma24.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Farma24.edmx</DependentUpon>
       <LastGenOutput>Farma24.cs</LastGenOutput>
@@ -228,11 +230,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Farma24.edmx">
+    <EntityDeploy Include="Farma24.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Farma24.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Farma24.edmx.diagram">
+    <Content Include="Farma24.edmx.diagram">
       <DependentUpon>Farma24.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -290,6 +292,7 @@
     <Content Include="Views\Utilizadors\Details.cshtml" />
     <Content Include="Views\Utilizadors\Edit.cshtml" />
     <Content Include="Views\Utilizadors\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

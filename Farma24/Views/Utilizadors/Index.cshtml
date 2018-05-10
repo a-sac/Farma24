@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Farma24.Models.Utilizador>
+﻿@using Farma24.Helper
+@model IEnumerable<Farma24.Models.Utilizador>
 
 @{
     ViewBag.Title = "Index";
@@ -10,25 +11,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.iban)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contacto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.role)
-        </th>
-        <th></th>
-    </tr>
-
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -47,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.role)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.email }) |
-            @Html.ActionLink("Details", "Details", new { id=item.email }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.email })
+            @Html.ActionLink("Edit", "Edit", new { id=UtilizadorHelper.ToBase64(item.email) }) |
+            @Html.ActionLink("Details", "Details", new { id=UtilizadorHelper.ToBase64(item.email) }) |
+            @Html.ActionLink("Delete", "Delete", new { id=UtilizadorHelper.ToBase64(item.email)})
         </td>
     </tr>
 }
