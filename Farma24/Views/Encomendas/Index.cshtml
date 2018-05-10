@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Farma24.Models.Encomenda>
+﻿@using Farma24.Models
+@model IEnumerable<Farma24.Models.Encomenda>
 
 @{
     ViewBag.Title = "Index";
@@ -33,7 +34,7 @@
             @Html.DisplayNameFor(model => model.Morada1.cidade)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Utilizador.password)
+            @Html.DisplayNameFor(model => Utilizador.password)
         </th>
         <th></th>
     </tr>
@@ -62,7 +63,7 @@
             @Html.DisplayFor(modelItem => item.Morada1.cidade)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Utilizador.password)
+            @Html.DisplayFor(modelItem => Utilizador.password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

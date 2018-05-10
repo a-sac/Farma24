@@ -1,4 +1,5 @@
-﻿@model Farma24.Models.Encomenda
+﻿@using Farma24.Models
+@model Farma24.Models.Encomenda
 
 @{
     ViewBag.Title = "Delete";
@@ -68,11 +69,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Utilizador.password)
+            @Html.DisplayNameFor(model => Utilizador.password)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Utilizador.password)
+            @Html.DisplayFor(model => Utilizador.password)
         </dd>
 
     </dl>

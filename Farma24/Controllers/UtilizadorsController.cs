@@ -4,8 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Farma24.Helper;
 using Farma24.Models;
 
 namespace Farma24.Controllers
@@ -27,6 +30,8 @@ namespace Farma24.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             if (utilizador == null)
             {
@@ -65,6 +70,7 @@ namespace Farma24.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             if (utilizador == null)
             {
@@ -96,6 +102,7 @@ namespace Farma24.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             if (utilizador == null)
             {
@@ -109,6 +116,8 @@ namespace Farma24.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+
+            id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             db.Utilizadors.Remove(utilizador);
             db.SaveChanges();
@@ -123,5 +132,7 @@ namespace Farma24.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

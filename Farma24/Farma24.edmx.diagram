@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="431d0e799f394260927cf31cad92908c" Name="Diagram1">
         <EntityTypeShape EntityType="Farma24DBModel.Encomenda" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Farma24DBModel.Encomenda_has_Produto" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Farma24DBModel.Encomenda_has_Produto" Width="2.875" PointX="7.5" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Farma24DBModel.Fatura" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Farma24DBModel.Morada" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Farma24DBModel.Produto" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
