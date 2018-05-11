@@ -11,7 +11,7 @@ namespace Farma24
 {
     using System;
     using System.Collections.Generic;
-    using Models;
+    using Farma24.Models;
     
     public partial class Morada
     {
@@ -30,6 +30,6 @@ namespace Farma24
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Encomenda> Encomendas { get; set; }
-        public virtual Utilizador Utilizador { get; set; }
+        public virtual Farma24.Models.Utilizador Utilizador { get; set; }
     }
 }

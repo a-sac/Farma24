@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Produto>
+﻿@model IEnumerable<Farma24.Produto>
 
 @{
     ViewBag.Title = "Index";
@@ -23,6 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.descricao)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagem)
+        </th>
         <th></th>
     </tr>
 
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imagem)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.codBarras }) |

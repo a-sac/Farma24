@@ -1,4 +1,4 @@
-﻿@model Produto
+﻿@model Farma24.Produto
 
 @{
     ViewBag.Title = "Delete";
@@ -41,6 +41,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imagem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagem)
         </dd>
 
     </dl>

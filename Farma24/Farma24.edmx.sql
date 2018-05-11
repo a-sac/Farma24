@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/09/2018 23:56:04
--- Generated from EDMX file: C:\Users\resende\source\repos\Farma24\Farma24\Models\Farma24.edmx
+-- Date Created: 05/10/2018 23:45:31
+-- Generated from EDMX file: C:\Users\sergi\OneDrive\Documentos\Farma24\Farma24\Farma24.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -18,7 +18,7 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_Encomenda_Fatura]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Encomenda] DROP CONSTRAINT [FK_Encomenda_Fatura];
+    ALTER TABLE [dbo].[Encomendas] DROP CONSTRAINT [FK_Encomenda_Fatura];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Encomenda_has_Produto_Encomenda]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Encomenda_has_Produto] DROP CONSTRAINT [FK_Encomenda_has_Produto_Encomenda];
@@ -27,39 +27,39 @@ IF OBJECT_ID(N'[dbo].[FK_Encomenda_has_Produto_Produto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Encomenda_has_Produto] DROP CONSTRAINT [FK_Encomenda_has_Produto_Produto];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Encomenda_Morada]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Encomenda] DROP CONSTRAINT [FK_Encomenda_Morada];
+    ALTER TABLE [dbo].[Encomendas] DROP CONSTRAINT [FK_Encomenda_Morada];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Encomenda_Utilizador]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Encomenda] DROP CONSTRAINT [FK_Encomenda_Utilizador];
+    ALTER TABLE [dbo].[Encomendas] DROP CONSTRAINT [FK_Encomenda_Utilizador];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Morada_Utilizador]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Morada] DROP CONSTRAINT [FK_Morada_Utilizador];
+    ALTER TABLE [dbo].[Moradas] DROP CONSTRAINT [FK_Morada_Utilizador];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Encomenda]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Encomenda];
-GO
 IF OBJECT_ID(N'[dbo].[Encomenda_has_Produto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Encomenda_has_Produto];
 GO
-IF OBJECT_ID(N'[dbo].[Fatura]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Fatura];
+IF OBJECT_ID(N'[dbo].[Encomendas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Encomendas];
 GO
-IF OBJECT_ID(N'[dbo].[Morada]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Morada];
+IF OBJECT_ID(N'[dbo].[Faturas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Faturas];
 GO
-IF OBJECT_ID(N'[dbo].[Produto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Produto];
+IF OBJECT_ID(N'[dbo].[Moradas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Moradas];
+GO
+IF OBJECT_ID(N'[dbo].[Produtoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Produtoes];
 GO
 IF OBJECT_ID(N'[dbo].[sysdiagrams]', 'U') IS NOT NULL
     DROP TABLE [dbo].[sysdiagrams];
 GO
-IF OBJECT_ID(N'[dbo].[Utilizador]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Utilizador];
+IF OBJECT_ID(N'[dbo].[Utilizadors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Utilizadors];
 GO
 
 -- --------------------------------------------------
@@ -113,7 +113,8 @@ CREATE TABLE [dbo].[Produtoes] (
     [nome] nvarchar(50)  NOT NULL,
     [categoria] nvarchar(50)  NOT NULL,
     [preco] float  NOT NULL,
-    [descricao] nvarchar(600)  NOT NULL
+    [descricao] nvarchar(600)  NOT NULL,
+    [imagem] nvarchar(100)  NOT NULL
 );
 GO
 
