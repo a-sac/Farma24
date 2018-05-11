@@ -89,6 +89,7 @@
     <Property Name="categoria" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="preco" Type="float" Nullable="false" />
     <Property Name="descricao" Type="nvarchar" Nullable="false" MaxLength="600" />
+    <Property Name="imagem" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -248,6 +249,7 @@
           <Property Name="preco" Type="Double" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="600" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Encomenda_has_Produto" Relationship="Self.FK_Encomenda_has_Produto_Produto" FromRole="Produto" ToRole="Encomenda_has_Produto" />
+          <Property Name="imagem" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -436,6 +438,7 @@
           <ScalarProperty Name="categoria" ColumnName="categoria" />
           <ScalarProperty Name="preco" ColumnName="preco" />
           <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="imagem" ColumnName="imagem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
