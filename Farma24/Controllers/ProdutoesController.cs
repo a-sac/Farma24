@@ -55,12 +55,12 @@ namespace Farma24.Controllers
                 string pic = System.IO.Path.GetFileName(file.FileName);
                 string path = System.IO.Path.Combine(
                                        Server.MapPath("~/Content/Images/medicamentos"), pic);
-                produto.imagem = path;
+                produto.imagem = "~/Content/Images/medicamentos/" + pic;
                 file.SaveAs(path);
             }
             else
             {
-                produto.imagem = "~/Content/Images/pills";
+                produto.imagem = "~/Content/Images/pills.jpg";
             }
 
                 if (ModelState.IsValid)
