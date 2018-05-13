@@ -4,22 +4,16 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h1><span style="color: #297a6d; border-bottom: solid;"><b>
+    @Html.DisplayFor(model => model.nome)
+</b></span></h1>
 
 <div>
-    <h4>Produto</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nome)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.categoria)
+            Categoria:
         </dt>
 
         <dd>
@@ -27,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.preco)
+            Preço:
         </dt>
 
         <dd>
@@ -35,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descricao)
+            Descrição:
         </dt>
 
         <dd>
@@ -43,17 +37,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.imagem)
+            Imagem:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.imagem)
+            <img src='@Url.Content(Model.imagem)' style="height:200px; max-width: 100%" />
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.codBarras }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.codBarras }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="btn btn-default back">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.codBarras })
+    </div>
+    <div class="btn btn-default back">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.codBarras })
+    </div>
+    <div class="btn btn-default back">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </p>
+
+<style>
+    .back {
+        background-color: #297a6d;
+    }
+
+        .back a {
+            text-decoration: none;
+            color: #ffffff
+        }
+
+        .back:hover {
+            background-color: #39dd90;
+            color: #ffffff
+        }
+</style>

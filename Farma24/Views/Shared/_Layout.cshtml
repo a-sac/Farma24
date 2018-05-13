@@ -17,6 +17,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <div class="navbar-header pull-right">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                </div>
                 <a href='@Url.Action("Index", "Produtoes")'>
                     <img src='@Url.Content("~/Content/Images/logo.png")' height="50" />
                 </a>
@@ -31,7 +34,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+</nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
