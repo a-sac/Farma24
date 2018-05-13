@@ -52,8 +52,9 @@ TestResults/
 ######################
 *.log
 *.sqlite
+.vs/
 # OS generated files #
-######################
+#####################
 .DS_Store?
 ehthumbs.db
 Icon?

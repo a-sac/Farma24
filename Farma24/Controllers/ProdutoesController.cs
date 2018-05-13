@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Farma24.Models;
+using Farma24;
 
 namespace Farma24.Controllers
 {
@@ -46,9 +46,24 @@ namespace Farma24.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "codBarras,nome,categoria,preco,descricao")] Produto produto)
+        public ActionResult Create([Bind(Include = "codBarras,nome,categoria,preco,descricao,imagem")] Produto produto, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+
+            if (file != null)
+            {
+               
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Content/Images/medicamentos"), pic);
+                produto.imagem = "~/Content/Images/medicamentos/" + pic;
+                file.SaveAs(path);
+            }
+            else
+            {
+                produto.imagem = "~/Content/Images/pills.jpg";
+            }
+
+                if (ModelState.IsValid)
             {
                 db.Produtoes.Add(produto);
                 db.SaveChanges();
@@ -78,7 +93,7 @@ namespace Farma24.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "codBarras,nome,categoria,preco,descricao")] Produto produto)
+        public ActionResult Edit([Bind(Include = "codBarras,nome,categoria,preco,descricao,imagem")] Produto produto)
         {
             if (ModelState.IsValid)
             {

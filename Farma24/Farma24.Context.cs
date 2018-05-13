@@ -13,7 +13,6 @@ namespace Farma24
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using Models;
-    
     public partial class Farma24DBEntities : DbContext
     {
         public Farma24DBEntities()

@@ -1,4 +1,4 @@
-﻿@model Produto
+﻿@model Farma24.Produto
 
 @{
     ViewBag.Title = "Details";
@@ -42,9 +42,18 @@
             @Html.DisplayFor(model => model.descricao)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.imagem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imagem)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.codBarras }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.codBarras }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

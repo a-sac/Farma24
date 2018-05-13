@@ -1,5 +1,4 @@
-﻿@using Farma24.Models
-@model IEnumerable<Morada>
+﻿@model IEnumerable<Morada>
 
 @{
     ViewBag.Title = "Index";
@@ -24,9 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.porta)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => Utilizador.password)
-        </th>
         <th></th>
     </tr>
 
@@ -43,9 +39,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.porta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => Utilizador.password)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

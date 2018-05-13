@@ -12,10 +12,95 @@
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #297a6d; /* Green */
+    color: white;
+    text-decoration: none;
+}
+
+.texto {
+    box-shadow: 0 4px 8px 0 rgba(41, 122, 109, 0.5);
+    transition: 0.3s;
+    color: black
+}
+
+.texto:hover {
+        box-shadow: 0 8px 16px 0 rgba(41, 122, 109, 0.5);
+}
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
+a.classname {
+    background: url(~/Content/Images/logo.png);
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.mySlides {
+    display: none
+}
+
+.w3-left, .w3-right, .w3-badge {
+    cursor: pointer
+}
+
+.w3-badge {
+    height: 10px;
+    width: 10px;
+    padding: 0
+}
+
+.navbar-custom {
+    background-color: white;
+    color: #297a6d;
+    border-radius: 0;
+    border-bottom-color: #297a6d;
+    opacity: 0.85;
+}
+
+    .navbar-custom .navbar-nav > li > a {
+        color: #297a6d;
+    }
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #ffffff;
+    background-color:transparent;
+}
+
+    .navbar-custom .navbar-nav > li > a:hover,
+    .navbar-custom .navbar-nav > li > a:focus,
+    .navbar-custom .navbar-nav > .active > a:hover,
+    .navbar-custom .navbar-nav > .active > a:focus,
+    .navbar-custom .navbar-nav > .open > a {
+        text-decoration: none;
+        background-color: #39dd90;
+        color: #ffffff;
+    }
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:#33aa33;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

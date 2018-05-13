@@ -25,6 +25,7 @@ namespace Farma24
         public string categoria { get; set; }
         public double preco { get; set; }
         public string descricao { get; set; }
+        public string imagem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Encomenda_has_Produto> Encomenda_has_Produto { get; set; }
