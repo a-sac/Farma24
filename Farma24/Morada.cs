@@ -11,8 +11,7 @@ namespace Farma24
 {
     using System;
     using System.Collections.Generic;
-    using Farma24.Models;
-    
+    using Models;    
     public partial class Morada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,6 +29,6 @@ namespace Farma24
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Encomenda> Encomendas { get; set; }
-        public virtual Farma24.Models.Utilizador Utilizador { get; set; }
+        public virtual Utilizador Utilizador { get; set; }
     }
 }

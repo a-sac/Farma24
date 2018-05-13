@@ -11,8 +11,8 @@ namespace Farma24
 {
     using System;
     using System.Collections.Generic;
-    using Farma24.Models;
-
+    using Models;
+    
     public partial class Encomenda
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

@@ -18,6 +18,7 @@
         <AssociationConnector Association="Farma24DBModel.FK_Encomenda_Utilizador" ManuallyRouted="false" />
         <AssociationConnector Association="Farma24DBModel.FK_Encomenda_has_Produto_Produto" ManuallyRouted="false" />
         <AssociationConnector Association="Farma24DBModel.FK_Morada_Utilizador" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Farma24DBModel.ShoppingCart" Width="1.5" PointX="2.875" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

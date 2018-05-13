@@ -28,7 +28,6 @@ namespace Farma24.Models
         public string nome { get; set; }
         public Nullable<int> iban { get; set; }
         public Nullable<int> contacto { get; set; }
-        [Required]
         [StringLength(60)]
         public string role { get; set; }
 
@@ -36,6 +35,25 @@ namespace Farma24.Models
         public virtual ICollection<Encomenda> Encomendas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Morada> Moradas { get; set; }
+
+        public void SetUser()
+        {
+            this.role = "user";
+        }
+        public void SetFuncionario()
+        {
+            this.role = "staff";
+        }
+
+        public Utilizador SetupAdmin()
+        {
+            Utilizador u = new Utilizador();
+            u.email = "admin@farma24.com";
+            u.role = "admin";
+            u.nome = "admin";
+            u.password = "admin";
+            return u;
+        }
     }
 
 
