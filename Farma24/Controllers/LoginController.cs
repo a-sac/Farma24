@@ -26,6 +26,11 @@ namespace Farma24.Controllers
                 var utilizadores = (from u in db.Utilizadors
                     where u.email == email && u.password == password
                     select u);
+                if (utilizadores.ToList().Count == 0)
+                {
+                    ModelState.AddModelError("", "Login data is incorrect");
+                    return View("Index");
+                }
                 Utilizador utilizador = utilizadores.ToList().ElementAt<Utilizador>(0);
                             HttpCookie cookie = LoginHelper.CreateAuthorizeTicket(utilizador.email, utilizador.role);
                             Response.Cookies.Add(cookie);
@@ -49,5 +54,7 @@ namespace Farma24.Controllers
         {
             return RedirectToAction("Index", "Produtoes");
         }
+
+
     }
 }

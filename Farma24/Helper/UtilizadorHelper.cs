@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using System.Web;
+using System.Web.Security;
 
 namespace Farma24.Helper
 {
@@ -16,6 +18,7 @@ namespace Farma24.Helper
             byte[] bytes = Convert.FromBase64String(value);
             return Encoding.UTF8.GetString(bytes);
         }
+
     }
 
 }

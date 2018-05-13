@@ -26,9 +26,6 @@
             @Html.DisplayFor(modelItem => item.contacto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.role)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=UtilizadorHelper.ToBase64(item.email) }) |
             @Html.ActionLink("Details", "Details", new { id=UtilizadorHelper.ToBase64(item.email) }) |
             @Html.ActionLink("Delete", "Delete", new { id=UtilizadorHelper.ToBase64(item.email)})

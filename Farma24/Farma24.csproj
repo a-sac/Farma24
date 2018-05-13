@@ -163,6 +163,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MoradasController.cs" />
     <Compile Include="Controllers\ProdutoesController.cs" />
+    <Compile Include="Controllers\RegisterViewController.cs" />
     <Compile Include="Controllers\UtilizadorsController.cs" />
     <Compile Include="Encomenda.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
@@ -193,6 +194,7 @@
     </Compile>
     <Compile Include="Helper\LoginHelper.cs" />
     <Compile Include="Helper\UtilizadorHelper.cs" />
+    <Compile Include="Models\RegisterView.cs" />
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Morada.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
@@ -293,9 +295,11 @@
     <Content Include="Views\Utilizadors\Edit.cshtml" />
     <Content Include="Views\Utilizadors\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\RegisterView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

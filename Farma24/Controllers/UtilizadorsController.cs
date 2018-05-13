@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Farma24.Helper;
 using Farma24.Models;
 
@@ -16,13 +17,14 @@ namespace Farma24.Controllers
     public class UtilizadorsController : Controller
     {
         private Farma24DBEntities db = new Farma24DBEntities();
-
+        [Authorize(Roles = "admin")]
         // GET: Utilizadors
         public ActionResult Index()
         {
             return View(db.Utilizadors.ToList());
         }
-
+        
+        [Authorize(Roles = "admin,staff,user")]
         // GET: Utilizadors/Details/5
         public ActionResult Details(string id)
         {
@@ -30,7 +32,9 @@ namespace Farma24.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
+            if(AuthorizedUser(id))
+            {
             id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             if (utilizador == null)
@@ -38,6 +42,11 @@ namespace Farma24.Controllers
                 return HttpNotFound();
             }
             return View(utilizador);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
         }
 
         // GET: Utilizadors/Create
@@ -53,6 +62,7 @@ namespace Farma24.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "email,password,nome,iban,contacto,role")] Utilizador utilizador)
         {
+            utilizador.SetUser();
             if (ModelState.IsValid)
             {
                 db.Utilizadors.Add(utilizador);
@@ -60,7 +70,7 @@ namespace Farma24.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(utilizador);
+            return RedirectToAction("Index","Produtoes");
         }
 
         // GET: Utilizadors/Edit/5
@@ -133,6 +143,20 @@ namespace Farma24.Controllers
             base.Dispose(disposing);
         }
 
+        private string GetUsernameCookie()
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            FormsAuthenticationTicket t = FormsAuthentication.Decrypt(authCookie.Value);
+            return t.Name;
+        }
 
+        private bool AuthorizedUser(string id)
+        {
+
+            string idCookie = GetUsernameCookie();
+            Utilizador cookieUtilizador = db.Utilizadors.Find(idCookie);
+
+            return cookieUtilizador.role == "admin" || id == idCookie;
+        }
     }
 }
