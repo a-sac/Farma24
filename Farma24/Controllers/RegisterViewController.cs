@@ -11,6 +11,8 @@ namespace Farma24.Controllers
     public class RegisterViewController : Controller
     {
         private Farma24DBEntities db = new Farma24DBEntities();
+
+        [AllowAnonymous]
         // GET: Register
         public ActionResult Index()
         {
@@ -23,6 +25,7 @@ namespace Farma24.Controllers
             return View(RegisterView);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Index([Bind(Include = "Utilizador, Morada")] RegisterView registerView)
         {
@@ -32,10 +35,18 @@ namespace Farma24.Controllers
                 registerView.Utilizador.SetUser();
                 if (ModelState.IsValid)
                 {
+                    Utilizador user = db.Utilizadors.FirstOrDefault(x => x.email == registerView.Utilizador.email);
+                    if (user == null)
+                    {
                     db.Utilizadors.Add(registerView.Utilizador);
                     db.Moradas.Add(registerView.Morada);
                     db.SaveChanges();
                     return RedirectToAction("Index","Produtoes");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("registerView.Utilizador.email", "Email address already exists.Please enter a different email address." );
+                    }
 
                 }
                 else
