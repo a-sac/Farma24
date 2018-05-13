@@ -28,7 +28,6 @@ namespace Farma24.Models
         public string nome { get; set; }
         public Nullable<int> iban { get; set; }
         public Nullable<int> contacto { get; set; }
-        [Required]
         [StringLength(60)]
         public string role { get; set; }
 
@@ -43,7 +42,7 @@ namespace Farma24.Models
         }
         public void SetFuncionario()
         {
-            this.role = "user";
+            this.role = "staff";
         }
 
         public Utilizador SetupAdmin()

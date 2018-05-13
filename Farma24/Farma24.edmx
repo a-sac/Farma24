@@ -4,187 +4,187 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Farma24DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="Farma24DBModelStoreContainer">
-    <EntitySet Name="Encomendas" EntityType="Farma24DBModel.Store.Encomendas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Encomenda_has_Produto" EntityType="Farma24DBModel.Store.Encomenda_has_Produto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Faturas" EntityType="Farma24DBModel.Store.Faturas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Moradas" EntityType="Farma24DBModel.Store.Moradas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Produtoes" EntityType="Farma24DBModel.Store.Produtoes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="Farma24DBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Utilizadors" EntityType="Farma24DBModel.Store.Utilizadors" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Encomenda_Fatura" Association="Farma24DBModel.Store.FK_Encomenda_Fatura">
-      <End Role="Fatura" EntitySet="Faturas" />
-      <End Role="Encomenda" EntitySet="Encomendas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Encomenda_has_Produto_Encomenda" Association="Farma24DBModel.Store.FK_Encomenda_has_Produto_Encomenda">
-      <End Role="Encomenda" EntitySet="Encomendas" />
-      <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Encomenda_Morada" Association="Farma24DBModel.Store.FK_Encomenda_Morada">
-      <End Role="Morada" EntitySet="Moradas" />
-      <End Role="Encomenda" EntitySet="Encomendas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Encomenda_Utilizador" Association="Farma24DBModel.Store.FK_Encomenda_Utilizador">
-      <End Role="Utilizador" EntitySet="Utilizadors" />
-      <End Role="Encomenda" EntitySet="Encomendas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Encomenda_has_Produto_Produto" Association="Farma24DBModel.Store.FK_Encomenda_has_Produto_Produto">
-      <End Role="Produto" EntitySet="Produtoes" />
-      <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Morada_Utilizador" Association="Farma24DBModel.Store.FK_Morada_Utilizador">
-      <End Role="Utilizador" EntitySet="Utilizadors" />
-      <End Role="Morada" EntitySet="Moradas" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Encomendas">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="estado" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="email" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="morada" Type="int" Nullable="false" />
-    <Property Name="inicio" Type="datetime" Nullable="false" />
-    <Property Name="fim" Type="datetime" Nullable="true" />
-    <Property Name="custoTotal" Type="float" Nullable="false" />
-    <Property Name="detalhes" Type="nvarchar" Nullable="true" MaxLength="600" />
-    <Property Name="Fatura_referencia" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Encomenda_has_Produto">
-    <Key>
-      <PropertyRef Name="Encomenda" />
-      <PropertyRef Name="Produto" />
-    </Key>
-    <Property Name="Encomenda" Type="int" Nullable="false" />
-    <Property Name="Produto" Type="int" Nullable="false" />
-    <Property Name="quantidade" Type="int" Nullable="false" />
-    <Property Name="custo" Type="float" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Faturas">
-    <Key>
-      <PropertyRef Name="referencia" />
-    </Key>
-    <Property Name="referencia" Type="int" Nullable="false" />
-    <Property Name="metodoPagamento" Type="nvarchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Moradas">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="cidade" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="codPostal" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="rua" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="porta" Type="nvarchar" Nullable="false" MaxLength="20" />
-    <Property Name="Utilizador_email" Type="nvarchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Produtoes">
-    <Key>
-      <PropertyRef Name="codBarras" />
-    </Key>
-    <Property Name="codBarras" Type="int" Nullable="false" />
-    <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="categoria" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="preco" Type="float" Nullable="false" />
-    <Property Name="descricao" Type="nvarchar" Nullable="false" MaxLength="600" />
-    <Property Name="imagem" Type="nvarchar" Nullable="false" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Utilizadors">
-    <Key>
-      <PropertyRef Name="email" />
-    </Key>
-    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="nome" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="iban" Type="int" Nullable="true" />
-    <Property Name="contacto" Type="int" Nullable="true" />
-    <Property Name="role" Type="nvarchar" Nullable="false" MaxLength="60" />
-  </EntityType>
-  <Association Name="FK_Encomenda_Fatura">
-    <End Role="Fatura" Type="Farma24DBModel.Store.Faturas" Multiplicity="0..1" />
-    <End Role="Encomenda" Type="Farma24DBModel.Store.Encomendas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Fatura">
-        <PropertyRef Name="referencia" />
-      </Principal>
-      <Dependent Role="Encomenda">
-        <PropertyRef Name="Fatura_referencia" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Encomenda_has_Produto_Encomenda">
-    <End Role="Encomenda" Type="Farma24DBModel.Store.Encomendas" Multiplicity="1" />
-    <End Role="Encomenda_has_Produto" Type="Farma24DBModel.Store.Encomenda_has_Produto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Encomenda">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Encomenda_has_Produto">
-        <PropertyRef Name="Encomenda" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Encomenda_Morada">
-    <End Role="Morada" Type="Farma24DBModel.Store.Moradas" Multiplicity="1" />
-    <End Role="Encomenda" Type="Farma24DBModel.Store.Encomendas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Morada">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="Encomenda">
-        <PropertyRef Name="morada" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Encomenda_Utilizador">
-    <End Role="Utilizador" Type="Farma24DBModel.Store.Utilizadors" Multiplicity="0..1" />
-    <End Role="Encomenda" Type="Farma24DBModel.Store.Encomendas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Utilizador">
-        <PropertyRef Name="email" />
-      </Principal>
-      <Dependent Role="Encomenda">
-        <PropertyRef Name="email" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Encomenda_has_Produto_Produto">
-    <End Role="Produto" Type="Farma24DBModel.Store.Produtoes" Multiplicity="1" />
-    <End Role="Encomenda_has_Produto" Type="Farma24DBModel.Store.Encomenda_has_Produto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Produto">
-        <PropertyRef Name="codBarras" />
-      </Principal>
-      <Dependent Role="Encomenda_has_Produto">
-        <PropertyRef Name="Produto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Morada_Utilizador">
-    <End Role="Utilizador" Type="Farma24DBModel.Store.Utilizadors" Multiplicity="1" />
-    <End Role="Morada" Type="Farma24DBModel.Store.Moradas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Utilizador">
-        <PropertyRef Name="email" />
-      </Principal>
-      <Dependent Role="Morada">
-        <PropertyRef Name="Utilizador_email" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="Farma24DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Encomenda_has_Produto">
+          <Key>
+            <PropertyRef Name="Encomenda" />
+            <PropertyRef Name="Produto" />
+          </Key>
+          <Property Name="Encomenda" Type="int" Nullable="false" />
+          <Property Name="Produto" Type="int" Nullable="false" />
+          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="custo" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Encomendas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="morada" Type="int" Nullable="false" />
+          <Property Name="inicio" Type="datetime" Nullable="false" />
+          <Property Name="fim" Type="datetime" />
+          <Property Name="custoTotal" Type="float" Nullable="false" />
+          <Property Name="detalhes" Type="nvarchar" MaxLength="600" />
+          <Property Name="Fatura_referencia" Type="int" />
+        </EntityType>
+        <EntityType Name="Faturas">
+          <Key>
+            <PropertyRef Name="referencia" />
+          </Key>
+          <Property Name="referencia" Type="int" Nullable="false" />
+          <Property Name="metodoPagamento" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Moradas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cidade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="codPostal" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rua" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="porta" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Utilizador_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produtoes">
+          <Key>
+            <PropertyRef Name="codBarras" />
+          </Key>
+          <Property Name="codBarras" Type="int" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="preco" Type="float" Nullable="false" />
+          <Property Name="descricao" Type="nvarchar" MaxLength="600" Nullable="false" />
+          <Property Name="imagem" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utilizadors">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="iban" Type="int" />
+          <Property Name="contacto" Type="int" />
+          <Property Name="role" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Encomenda_Fatura">
+          <End Role="Faturas" Type="Self.Faturas" Multiplicity="0..1" />
+          <End Role="Encomendas" Type="Self.Encomendas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Faturas">
+              <PropertyRef Name="referencia" />
+            </Principal>
+            <Dependent Role="Encomendas">
+              <PropertyRef Name="Fatura_referencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Encomenda">
+          <End Role="Encomendas" Type="Self.Encomendas" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encomendas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Encomenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_has_Produto_Produto">
+          <End Role="Produtoes" Type="Self.Produtoes" Multiplicity="1" />
+          <End Role="Encomenda_has_Produto" Type="Self.Encomenda_has_Produto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produtoes">
+              <PropertyRef Name="codBarras" />
+            </Principal>
+            <Dependent Role="Encomenda_has_Produto">
+              <PropertyRef Name="Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Morada">
+          <End Role="Moradas" Type="Self.Moradas" Multiplicity="1" />
+          <End Role="Encomendas" Type="Self.Encomendas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Moradas">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Encomendas">
+              <PropertyRef Name="morada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encomenda_Utilizador">
+          <End Role="Utilizadors" Type="Self.Utilizadors" Multiplicity="0..1" />
+          <End Role="Encomendas" Type="Self.Encomendas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizadors">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Encomendas">
+              <PropertyRef Name="email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Morada_Utilizador">
+          <End Role="Utilizadors" Type="Self.Utilizadors" Multiplicity="1" />
+          <End Role="Moradas" Type="Self.Moradas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilizadors">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Moradas">
+              <PropertyRef Name="Utilizador_email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Farma24DBModelStoreContainer">
+          <EntitySet Name="Encomenda_has_Produto" EntityType="Self.Encomenda_has_Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encomendas" EntityType="Self.Encomendas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faturas" EntityType="Self.Faturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Moradas" EntityType="Self.Moradas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produtoes" EntityType="Self.Produtoes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilizadors" EntityType="Self.Utilizadors" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Encomenda_Fatura" Association="Self.FK_Encomenda_Fatura">
+            <End Role="Faturas" EntitySet="Faturas" />
+            <End Role="Encomendas" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Encomenda" Association="Self.FK_Encomenda_has_Produto_Encomenda">
+            <End Role="Encomendas" EntitySet="Encomendas" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_has_Produto_Produto" Association="Self.FK_Encomenda_has_Produto_Produto">
+            <End Role="Produtoes" EntitySet="Produtoes" />
+            <End Role="Encomenda_has_Produto" EntitySet="Encomenda_has_Produto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Morada" Association="Self.FK_Encomenda_Morada">
+            <End Role="Moradas" EntitySet="Moradas" />
+            <End Role="Encomendas" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encomenda_Utilizador" Association="Self.FK_Encomenda_Utilizador">
+            <End Role="Utilizadors" EntitySet="Utilizadors" />
+            <End Role="Encomendas" EntitySet="Encomendas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Morada_Utilizador" Association="Self.FK_Morada_Utilizador">
+            <End Role="Utilizadors" EntitySet="Utilizadors" />
+            <End Role="Moradas" EntitySet="Moradas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Farma24DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
