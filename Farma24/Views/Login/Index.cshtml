@@ -13,9 +13,7 @@
                     <input type="text" name="email" class="form-control" placeholder="Email address" required />
                     <input type="text" name="password" class="form-control" placeholder="Password" required />
                     <div id="remember" class="checkbox">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
+                        Remember me<input type="checkbox" value="remember-me">
                     </div>
                     <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Submit">Sign in</button>
                 </fieldset>
@@ -29,8 +27,19 @@
 }
 else
 {
-    <span>Hello</span> <strong> @Html.Encode(User.Identity.Name) </strong>
-    @Html.ActionLink("Sign Out", "Logout", "Login")
+    <div class="container">
+        <div class="card">
+            <img id="profile-img" class="profile-img-card" src="~/Content/Images/logo.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            @Html.ValidationSummary(true)
+            <div class="form-signin">
+                <div>
+                <h1 style="text-align: center"><span>De certeza que queres sair ?</span> <br /></h1>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Submit"> @Html.ActionLink("Sign Out", "Logout", "Login")</button>
+            </div>
+        </div>
+    </div>
 }
 
 <style>
@@ -41,9 +50,13 @@ else
                     * General styles
                     */
     body, html {
-        height: 100%;
-        background-repeat: no-repeat;
-        background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        background: -moz-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* FF3.6+ */
+        background: -webkit-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Opera 11.10+ */
+        background: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+        min-height: 100%;
+        background-attachment: fixed;
     }
 
     .card-container.card {
@@ -160,11 +173,15 @@ else
         transition: all 0.218s;
     }
 
-        .btn.btn-signin:hover,
-        .btn.btn-signin:active,
-        .btn.btn-signin:focus {
-            background-color: rgb(12, 97, 33);
-        }
+    a {
+        color: white;
+    }
+
+    .btn.btn-signin:hover,
+    .btn.btn-signin:active,
+    .btn.btn-signin:focus {
+        background-color: #297a6d;
+    }
 
     .forgot-password {
         color: rgb(104, 145, 162);
@@ -175,4 +192,8 @@ else
         .forgot-password:focus {
             color: rgb(12, 97, 33);
         }
+
+    footer {
+        color: white;
+    }
 </style>
