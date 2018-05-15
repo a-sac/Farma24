@@ -55,6 +55,7 @@ namespace Farma24.Models
             u.password = "admin";
             return u;
         }
+
     }
 
 
