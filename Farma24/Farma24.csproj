@@ -156,6 +156,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EncomendaProdutoViewController.cs" />
     <Compile Include="Controllers\EncomendasController.cs" />
     <Compile Include="Controllers\Encomenda_has_ProdutoController.cs" />
     <Compile Include="Controllers\FaturasController.cs" />
@@ -165,9 +166,6 @@
     <Compile Include="Controllers\ProdutoesController.cs" />
     <Compile Include="Controllers\RegisterViewController.cs" />
     <Compile Include="Controllers\UtilizadorsController.cs" />
-    <Compile Include="Encomenda.cs">
-      <DependentUpon>Farma24.tt</DependentUpon>
-    </Compile>
     <Compile Include="Encomenda_has_Produto.cs">
       <DependentUpon>Farma24.tt</DependentUpon>
     </Compile>
@@ -194,6 +192,8 @@
     </Compile>
     <Compile Include="Helper\LoginHelper.cs" />
     <Compile Include="Helper\UtilizadorHelper.cs" />
+    <Compile Include="Models\Encomenda.cs" />
+    <Compile Include="Models\EncomendaProdutoView.cs" />
     <Compile Include="Models\RegisterView.cs" />
     <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Morada.cs">
@@ -296,10 +296,11 @@
     <Content Include="Views\Utilizadors\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\RegisterView\Index.cshtml" />
+    <Content Include="Views\EncomendaProdutoView\Index.cshtml" />
+    <Content Include="Views\EncomendaProdutoView\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

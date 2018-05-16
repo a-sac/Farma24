@@ -11,6 +11,7 @@ namespace Farma24
 {
     using System;
     using System.Collections.Generic;
+    using Models;
     
     public partial class Fatura
     {
