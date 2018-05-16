@@ -150,13 +150,17 @@ namespace Farma24.Controllers
             return t.Name;
         }
 
-        private bool AuthorizedUser(string id)
+
+        public Utilizador GetUser()
+        {
+          return   db.Utilizadors.Find(GetUsernameCookie());
+        }
+        public bool AuthorizedUser(string id)
         {
 
-            string idCookie = GetUsernameCookie();
-            Utilizador cookieUtilizador = db.Utilizadors.Find(idCookie);
+            Utilizador cookieUtilizador = GetUser();
 
-            return cookieUtilizador.role == "admin" || id == idCookie;
+            return cookieUtilizador.role == "admin" || id == cookieUtilizador.email;
         }
     }
 }

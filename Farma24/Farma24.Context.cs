@@ -25,7 +25,7 @@ namespace Farma24
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Encomenda> Encomendas { get; set; }
+        public virtual DbSet<Models.Encomenda> Encomendas { get; set; }
         public virtual DbSet<Encomenda_has_Produto> Encomenda_has_Produto { get; set; }
         public virtual DbSet<Fatura> Faturas { get; set; }
         public virtual DbSet<Morada> Moradas { get; set; }

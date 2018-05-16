@@ -11,7 +11,7 @@ namespace Farma24
 {
     using System;
     using System.Collections.Generic;
-    
+    using Models;
     public partial class Encomenda_has_Produto
     {
         public int Encomenda { get; set; }

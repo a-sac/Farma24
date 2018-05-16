@@ -1,0 +1,90 @@
+﻿@model Farma24.Models.EncomendaProdutoView
+
+<h1><span style="color: #297a6d; border-bottom: solid;"><b>
+    @Html.DisplayFor(model => model.produto.nome)
+</b></span></h1>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Categoria:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.categoria)
+        </dd>
+
+        <dt>
+            Preço:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.preco)
+        </dd>
+
+        <dt>
+            Descrição:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.produto.descricao)
+        </dd>
+
+        <dt>
+            Imagem:
+        </dt>
+
+        <dd>
+            <img src='@Url.Content(Model.produto.imagem)' style="height:200px; max-width: 100%" />
+        </dd>
+    </dl>
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.encomendaHasProduto.quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.encomendaHasProduto.quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.encomendaHasProduto.quantidade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    }
+
+</div>
+<p>
+    <div class="btn btn-default back">
+        @Html.ActionLink("comprar", "Create", new { id = Model.produto.codBarras })
+    </div>
+    <div class="btn btn-default back">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.produto.codBarras })
+    </div>
+    <div class="btn btn-default back">
+        @Html.ActionLink("Delete", "Delete", new { id = Model.produto.codBarras })
+    </div>
+</p>
+
+<style>
+    .back {
+        background-color: #297a6d;
+    }
+
+        .back a {
+            text-decoration: none;
+            color: #ffffff
+        }
+
+        .back:hover {
+            background-color: #39dd90;
+            color: #ffffff
+        }
+</style>
