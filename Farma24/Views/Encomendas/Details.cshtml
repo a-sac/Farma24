@@ -12,30 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.inicio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.inicio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fim)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fim)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.custoTotal)
         </dt>
 
@@ -47,18 +23,6 @@
             @Html.DisplayNameFor(model => model.detalhes)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.detalhes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fatura.metodoPagamento)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fatura.metodoPagamento)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Morada1.cidade)
         </dt>
@@ -66,15 +30,14 @@
         <dd>
             @Html.DisplayFor(model => model.Morada1.cidade)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => Utilizador.password)
-        </dt>
-
+        @foreach (var item in Model.Encomenda_has_Produto)
+        {
         <dd>
-            @Html.DisplayFor(model => Utilizador.password)
+            @item.Produto1.nome
+            @item.quantidade
+            @item.custo
         </dd>
-
+        }
     </dl>
 </div>
 <p>
