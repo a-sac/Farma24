@@ -29,7 +29,10 @@
             </a>
         }
     </div>
-    <a href='@Url.Action("Create", "Produtoes")' class="button">
-        Novo Produto
-    </a>
+    @if (this.User.IsInRole("admin"))
+    {
+        <a href='@Url.Action("Create", "Produtoes")' class="button">
+            Novo Produto
+        </a>
+    }
 </div>

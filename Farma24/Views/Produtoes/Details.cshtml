@@ -4,9 +4,13 @@
     ViewBag.Title = "Details";
 }
 
-<h1><span style="color: #297a6d; border-bottom: solid;"><b>
-    @Html.DisplayFor(model => model.nome)
-</b></span></h1>
+<h1>
+    <span style="color: #297a6d; border: solid;">
+        <b>
+            @Html.DisplayFor(model => model.nome)
+        </b>
+    </span>
+</h1>
 
 <div>
     <hr />
@@ -49,15 +53,19 @@
 
 
 <p>
-    <div class="btn btn-default back">
-        @Html.ActionLink("comprar", "Create", new { id = Model.codBarras })
-    </div>
-    <div class="btn btn-default back">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.codBarras })
-    </div>
-    <div class="btn btn-default back">
-        @Html.ActionLink("Delete", "Delete", new { id = Model.codBarras })
-    </div>
+    @if (this.User.IsInRole("admin"))
+    {
+        <div class="btn btn-default back">
+            @Html.ActionLink("comprar", "Create", new { id = Model.codBarras })
+        </div>
+        <div class="btn btn-default back">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.codBarras })
+        </div>
+        <div class="btn btn-default back">
+            @Html.ActionLink("Delete", "Delete", new { id = Model.codBarras })
+        </div>
+    }
+   
     <div class="btn btn-default back">
         @Html.ActionLink("Back to List", "Index")
     </div>

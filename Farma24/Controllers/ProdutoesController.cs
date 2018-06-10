@@ -36,6 +36,7 @@ namespace Farma24.Controllers
         }
 
         // GET: Produtoes/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +45,7 @@ namespace Farma24.Controllers
         // POST: Produtoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "codBarras,nome,categoria,preco,descricao,imagem")] Produto produto, HttpPostedFileBase file)
@@ -74,6 +76,7 @@ namespace Farma24.Controllers
         }
 
         // GET: Produtoes/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +94,7 @@ namespace Farma24.Controllers
         // POST: Produtoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "codBarras,nome,categoria,preco,descricao,imagem")] Produto produto)
@@ -105,6 +109,7 @@ namespace Farma24.Controllers
         }
 
         // GET: Produtoes/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +125,7 @@ namespace Farma24.Controllers
         }
 
         // POST: Produtoes/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

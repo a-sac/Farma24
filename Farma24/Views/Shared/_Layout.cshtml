@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using  Farma24.Helper
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,10 +31,21 @@
                     <li>@Html.ActionLink("Sobre nós", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Login/Registar", "Index", "Login")</li>
-                </ul>
-            </div>
+                @if (!Request.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                        <li>@Html.ActionLink("Registar", "Index", "RegisterView")</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink(User.Identity.Name, "Details", "Utilizadors", new { id = UtilizadorHelper.ToBase64(User.Identity.Name) }, null)</li>
+                        <li>@Html.ActionLink("Logout", "Index", "Login")</li>
+                    </ul>
+                }
+                </div>
         </div>
 </nav>
     <div class="container body-content">

@@ -33,8 +33,8 @@ namespace Farma24.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             
-            if(AuthorizedUser(id))
-            {
+            //if(AuthorizedUser(id))
+            //{
             id = UtilizadorHelper.FromBase64(id);
             Utilizador utilizador = db.Utilizadors.Find(id);
             if (utilizador == null)
@@ -42,11 +42,11 @@ namespace Farma24.Controllers
                 return HttpNotFound();
             }
             return View(utilizador);
-            }
-            else
+            //}
+            /*else
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            }*/
         }
 
         // GET: Utilizadors/Create
