@@ -36,7 +36,7 @@ else
                 <div>
                 <h1 style="text-align: center"><span>De certeza que queres sair ?</span> <br /></h1>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Submit"> @Html.ActionLink("Sign Out", "Logout", "Login")</button>
+                @Html.ActionLink("Sair", "Logout", "Login", new { @class= "btn btn-lg btn-primary btn-block btn-signin", style="padding: 8px" })
             </div>
         </div>
     </div>
@@ -181,6 +181,7 @@ else
     .btn.btn-signin:active,
     .btn.btn-signin:focus {
         background-color: #297a6d;
+        cursor: pointer;
     }
 
     .forgot-password {

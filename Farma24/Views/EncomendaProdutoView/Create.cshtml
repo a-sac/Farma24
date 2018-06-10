@@ -1,79 +1,198 @@
 ﻿@model Farma24.Models.EncomendaProdutoView
 
-<h1><span style="color: #297a6d; border-bottom: solid;"><b>
-    @Html.DisplayFor(model => model.produto.nome)
-</b></span></h1>
+<div class="container">
+    <h1 style="text-align: center"><span style="color: #297a6d; border: solid;"><b>@Html.DisplayFor(model => model.produto.nome)</b></span></h1>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            Categoria:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.produto.categoria)
-        </dd>
-
-        <dt>
-            Preço:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.produto.preco)
-        </dd>
-
-        <dt>
-            Descrição:
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.produto.descricao)
-        </dd>
-
-        <dt>
-            Imagem:
-        </dt>
-
-        <dd>
-            <img src='@Url.Content(Model.produto.imagem)' style="height:200px; max-width: 100%" />
-        </dd>
-    </dl>
-    @if (Request.IsAuthenticated)
-    {
-        using (Html.BeginForm())
-        {
-            <div class="form-group">
-                @Html.LabelFor(model => model.encomendaHasProduto.quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.encomendaHasProduto.quantidade, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.encomendaHasProduto.quantidade, "", new { @class = "text-danger" })
-                </div>
+    <div class="card-container card">
+        <div>
+            <hr />
+            <div class="text-center campos">
+                <b style="font-size: 20px">Categoria </b>
+                    <br />
+                    @Html.DisplayFor(model => model.produto.categoria)
             </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+            <div class="text-center campos">
+                <b style="font-size: 20px">Preço </b>
+                <br />
+                @Html.DisplayFor(model => model.produto.preco)
             </div>
-        }
-    }
+            <div class="text-center campos">
+                <b style="font-size: 20px">Descrição </b>
+                <br />
+                @Html.DisplayFor(model => model.produto.descricao)
+            </div>
+            <img id="profile-img" class="profile-img-card" src='@Url.Content(Model.produto.imagem)' />
 
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm())
+                {
+                    <div class="form-signin">
+                        <div class="text-center campos">
+                            @Html.LabelFor(model => model.encomendaHasProduto.quantidade, htmlAttributes: new { @class = "control-label", style = "text-align: center; font-size: 20px; text-transform: capitalize" })
+                            <div>
+                                @Html.EditorFor(model => model.encomendaHasProduto.quantidade, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.encomendaHasProduto.quantidade, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="text-center campos">
+                            <div>
+                                <input type="submit" value="Comprar" class="btn btn-lg btn-primary btn-block btn-signin" style="color: white" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+    </div>
 </div>
 <p>
+    @if (this.User.IsInRole("admin"))
+    {
+        <div class="btn btn-default back">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.produto.codBarras })
+        </div>
+        <div class="btn btn-default back">
+            @Html.ActionLink("Delete", "Delete", new { id = Model.produto.codBarras })
+        </div>
+    }
+
     <div class="btn btn-default back">
-        @Html.ActionLink("comprar", "Create", new { id = Model.produto.codBarras })
-    </div>
-    <div class="btn btn-default back">
-        @Html.ActionLink("Edit", "Edit", new { id = Model.produto.codBarras })
-    </div>
-    <div class="btn btn-default back">
-        @Html.ActionLink("Delete", "Delete", new { id = Model.produto.codBarras })
+        @Html.ActionLink("Back to List", "Index")
     </div>
 </p>
 
 <style>
+    .form-signin #inputEmail,
+    .form-signin #inputPassword {
+        direction: ltr;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .form-signin input[type=email],
+    .form-signin input[type=password],
+    .form-signin input[type=text],
+    .form-signin button {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        z-index: 1;
+        position: relative;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .form-signin .form-control:focus {
+        border-color: rgb(104, 145, 162);
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    }
+
+    .card-container.card {
+        max-width: 350px;
+        padding: 40px 40px;
+    }
+
+    .btn {
+        font-weight: 700;
+        height: 36px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+
+    /*
+                    * Card component
+                    */
+    .card {
+        background-color: #F7F7F7;
+        /* just in case there no content*/
+        padding: 20px 25px 30px;
+        margin: 0 auto 25px;
+        margin-top: 50px;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    /*
+                    * Form styles
+                    */
+    .profile-name-card {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0 0;
+        min-height: 1em;
+    }
+
+    .btn.btn-signin {
+        /*background-color: #4d90fe; */
+        background-color: rgb(104, 145, 162);
+        /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+        padding: 0px;
+        font-weight: 700;
+        font-size: 14px;
+        height: 36px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        border: none;
+        -o-transition: all 0.218s;
+        -moz-transition: all 0.218s;
+        -webkit-transition: all 0.218s;
+        transition: all 0.218s;
+    }
+
+        .btn.btn-signin:hover,
+        .btn.btn-signin:active,
+        .btn.btn-signin:focus {
+            background-color: #297a6d;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    .btn {
+        color: white;
+        font-weight: 700;
+        height: 36px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .profile-img-card {
+        width: 130px;
+        height: 96px;
+        margin: 0 auto 10px;
+        display: block;
+    }
+
+    .campos {
+        margin-bottom: 10px;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
     .back {
         background-color: #297a6d;
     }
