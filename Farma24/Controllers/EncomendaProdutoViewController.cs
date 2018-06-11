@@ -11,6 +11,15 @@ namespace Farma24.Controllers
     public class EncomendaProdutoViewController : Controller
     {
         private Farma24DBEntities db = new Farma24DBEntities();
+
+        //GET: EncomendaProduto
+        public ActionResult Index()
+        {
+            Encomenda encomenda = getStandBy();
+            var ehp = encomenda.Encomenda_has_Produto;
+            return View(ehp);
+        }
+
         // GET: EncomendaProduto
         public ActionResult Create(int? id)
         {
@@ -70,7 +79,20 @@ namespace Farma24.Controllers
 
                 return View(encomendaProduto);
         }
-        
+
+        public ActionResult Edit(Encomenda_has_Produto ep)
+        {
+             var a = db.Encomenda_has_Produto.FirstOrDefault(e => e.Encomenda == ep.Encomenda && ep.Produto == e.Produto);
+            if (a != null)
+            {
+                db.Encomenda_has_Produto.Remove(a);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "EncomendaProdutoView");
+        }
+
+
         public Encomenda getStandBy()
         {
             var mail= User.Identity.Name;

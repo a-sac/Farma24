@@ -19,8 +19,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
                 <div class="navbar-header pull-right">
-                    <input type="text" class="form-control" placeholder="Search for...">
+                    <form asp-controller="Produoes" asp-action="Index">
+                        <p>
+                            <input type="text" class="form-control" name="SearchString">
+                        </p>
+                    </form>
                 </div>
                 <a href='@Url.Action("Index", "Produtoes")'>
                     <img src='@Url.Content("~/Content/Images/logo.png")' height="50" />
@@ -41,6 +46,8 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Carrinho", "Index", "EncomendaProdutoView")</li>
+                        <li>@Html.ActionLink("Historico", "Index", "Encomendas")</li>
                         <li>@Html.ActionLink(User.Identity.Name, "Details", "Utilizadors", new { id = UtilizadorHelper.ToBase64(User.Identity.Name) }, null)</li>
                         <li>@Html.ActionLink("Logout", "Index", "Login")</li>
                     </ul>
