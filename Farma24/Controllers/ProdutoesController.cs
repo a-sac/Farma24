@@ -15,9 +15,16 @@ namespace Farma24.Controllers
         private Farma24DBEntities db = new Farma24DBEntities();
 
         // GET: Produtoes
-        public ActionResult Index()
+        public ActionResult Index(String searchString)
         {
-            return View(db.Produtoes.ToList());
+            var produtos = from m in db.Produtoes
+                select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                produtos = produtos.Where(s => s.nome.Contains(searchString));
+            }
+            return View(produtos);
         }
 
         // GET: Produtoes/Details/5

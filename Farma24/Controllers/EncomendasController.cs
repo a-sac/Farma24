@@ -17,7 +17,10 @@ namespace Farma24.Controllers
         // GET: Encomendas
         public ActionResult Index()
         {
-            var encomendas = db.Encomendas.Include(e => e.Fatura).Include(e => e.Morada1).Include(e => e.Utilizador);
+
+            var mail= User.Identity.Name;
+            var user = db.Utilizadors.Find(mail);
+            var encomendas = db.Encomendas.Include(e => e.Fatura).Include(e => e.Morada1).Include(e => e.Utilizador).Where(e => e.Utilizador.email.Equals(mail));
             return View(encomendas.ToList());
         }
 

@@ -1,6 +1,8 @@
-﻿namespace Farma24.Models
+﻿using System.Collections;
+
+namespace Farma24.Models
 {
-    public class EncomendaProdutoView
+    public class EncomendaProdutoView : IEnumerable
     {
         public EncomendaProdutoView()
         {
@@ -16,5 +18,9 @@
         public Encomenda encomenda { get; set; }
         public Encomenda_has_Produto encomendaHasProduto { get; set; }
         public Produto produto { get; set; }
+        public IEnumerator GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
