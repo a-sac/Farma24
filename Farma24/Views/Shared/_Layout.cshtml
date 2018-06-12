@@ -43,7 +43,7 @@
                         <li>@Html.ActionLink("Registar", "Index", "RegisterView")</li>
                     </ul>
                 }
-                else
+                else if(this.User.IsInRole("user"))
                 {
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Carrinho", "Index", "EncomendaProdutoView")</li>
@@ -51,6 +51,14 @@
                         <li>@Html.ActionLink(User.Identity.Name, "Details", "Utilizadors", new { id = UtilizadorHelper.ToBase64(User.Identity.Name) }, null)</li>
                         <li>@Html.ActionLink("Logout", "Index", "Login")</li>
                     </ul>
+                }
+                else if (this.User.IsInRole("staff"))
+                {
+
+                }
+                else
+                {
+
                 }
                 </div>
         </div>
