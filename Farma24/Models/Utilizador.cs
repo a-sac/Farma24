@@ -46,13 +46,24 @@ namespace Farma24.Models
             this.role = "staff";
         }
 
-        public Utilizador SetupAdmin()
+        public static Utilizador SetupAdmin()
         {
             Utilizador u = new Utilizador();
             u.email = "admin@farma24.com";
             u.role = "admin";
             u.nome = "admin";
-            u.password = "admin";
+            u.password = "password";
+            return u;
+        }
+        public static Utilizador SetupStaff()
+        {
+            Utilizador u = new Utilizador();
+            u.email = "staff@farma24.com";
+            u.role = "staff";
+            u.nome = "staff";
+            u.password = "password";
+            u.iban = 999999999;
+            u.iban = 969000000;
             return u;
         }
 

@@ -1,56 +1,24 @@
-﻿@model Farma24.Models.EncomendaProdutoView
+﻿@using Farma24.Models
+@model List<Encomenda_has_Produto>
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.inicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.fim)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.custoTotal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.detalhes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.Fatura.metodoPagamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.encomenda.Morada1.cidade)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.encomenda)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.estado)
+                @Html.DisplayFor(modelItem => item.Produto1.nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.inicio)
+                @Html.DisplayFor(modelItem => item.Produto1.preco)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.fim)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.custoTotal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.detalhes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fatura.metodoPagamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada1.cidade)
+                @Html.DisplayFor(modelItem => item.quantidade)
             </td>
 
+            <td>
+                @Html.ActionLink("remover Produto","Edit",item)
+            </td>
         </tr>
     }
 

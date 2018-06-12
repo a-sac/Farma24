@@ -14,7 +14,7 @@ namespace Farma24.Models
       
         public Encomenda()
         {
-            this.Encomenda_has_Produto = new HashSet<Encomenda_has_Produto>();
+            this.Encomenda_has_Produto = new List<Encomenda_has_Produto>();
         }
         [Key] 
         public int id { get; set; }
@@ -28,7 +28,7 @@ namespace Farma24.Models
         public Nullable<int> Fatura_referencia { get; set; }
     
         public virtual Fatura Fatura { get; set; }
-        public virtual ICollection<Encomenda_has_Produto> Encomenda_has_Produto { get; set; }
+        public virtual List<Encomenda_has_Produto> Encomenda_has_Produto { get; set; }
         public virtual Morada Morada1 { get; set; }
         public virtual Utilizador Utilizador { get; set; }
 
