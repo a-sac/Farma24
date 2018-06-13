@@ -54,7 +54,19 @@
                 }
                 else if (this.User.IsInRole("staff"))
                 {
-
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Carrinho", "Index", "EncomendaProdutoView")</li>
+                        <li>@Html.ActionLink("Historico", "Index", "Encomendas")</li>
+                        <li>@Html.ActionLink(User.Identity.Name, "Details", "Utilizadors", new { id = UtilizadorHelper.ToBase64(User.Identity.Name) }, null)</li>
+                        <li>@Html.ActionLink("Logout", "Index", "Login")</li>
+                    </ul>
+                }
+                else if (this.User.IsInRole("admin"))
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Menu de Administrador","Index","Utilizadors")</li>
+                        <li>@Html.ActionLink("Logout", "Index", "Login")</li>
+                    </ul>
                 }
                 else
                 {
