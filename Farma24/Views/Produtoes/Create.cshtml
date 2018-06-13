@@ -2,6 +2,15 @@
 
 @{
     ViewBag.Title = "Create";
+    List<SelectListItem> categorias = new List<SelectListItem>();
+    categorias.Add(new SelectListItem { Text = "Analgésico", Value = "Analgésico" });
+    categorias.Add(new SelectListItem { Text = "Anti-histamínico", Value = "Anti-histamínico" });
+    categorias.Add(new SelectListItem { Text = "Antibiótico", Value = "Antibiótico" });
+    categorias.Add(new SelectListItem { Text = "Calmante", Value = "Calmante" });
+    categorias.Add(new SelectListItem { Text = "Hormonal", Value = "Hormonal" });
+    categorias.Add(new SelectListItem { Text = "Vitamínico", Value = "Vitamínico" });
+    categorias.Add(new SelectListItem { Text = "Outro", Value = "Outro" });
+
 }
 
 <h1><span style="color: #297a6d; border: solid;"><b>NOVO PRODUTO</b></span></h1>
@@ -33,7 +42,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.categoria, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.categoria, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.categoria, categorias, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.categoria, "", new { @class = "text-danger" })
                 </div>
             </div>
