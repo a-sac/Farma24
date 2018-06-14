@@ -1,6 +1,8 @@
 ﻿@using Farma24.Models
 @model List<Encomenda_has_Produto>
 
+<h1 style="text-align: center"><span style="color: #297a6d; border: solid;"><b>ENCOMENDA ATUAL</b></span></h1>
+
 <table class="table">
 
     @foreach (var item in Model)
@@ -17,9 +19,19 @@
             </td>
 
             <td>
-                @Html.ActionLink("remover Produto","Edit",item)
+                @Html.ActionLink("remover Produto", "Edit", item)
             </td>
         </tr>
     }
 
 </table>
+
+<a href='@Url.Action("Update", "EncomendaProdutoView")' class="button">
+    Comprar
+</a>
+
+<style>
+    td {
+        text-decoration: none;
+    }
+</style>
