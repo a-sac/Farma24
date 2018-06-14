@@ -214,6 +214,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\building.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\medicamentos\01tabela.PNG" />
+    <Content Include="Content\Images\medicamentos\67tabela.PNG" />
+    <Content Include="Content\Images\pills.jpg" />
+    <Content Include="Content\Images\rsz_building.png" />
+    <Content Include="Content\Images\rsz_pills.jpg" />
+    <Content Include="Content\Images\rsz_scooter.jpg" />
+    <Content Include="Content\Images\scooter.jpeg" />
     <Content Include="Farma24.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Farma24.Context.cs</LastGenOutput>
@@ -241,6 +250,7 @@
     <Content Include="Farma24.edmx.diagram">
       <DependentUpon>Farma24.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\farma24 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
