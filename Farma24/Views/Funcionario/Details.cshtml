@@ -1,0 +1,47 @@
+﻿@model Farma24.Models.Funcionario
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div id="myMap" style="position:relative;height:300px">
+    </div>
+</div>
+
+<p><input onclick="GetDirections()" value="Gerar Rota" type="button" class="button" /></p>
+<a href='@Url.Action("Update", new { id = Model.encomenda.id})' class="button">
+    Finalizar Entrega
+</a>
+
+<script type='text/javascript'>
+    var map, directionsManager;
+    function GetMap() {
+        map = new Microsoft.Maps.Map('#myMap', { credentials: 'AjPN87zkOjiSSpyvlB5n9r3TUsDC_bY_WXZULG63RdHpu6Cgz_z-3l5aMtyO3pqt' }); //Load the directions module.
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () { //Create an instance of the directions manager.
+            directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map); //Specify where to display the route instructions.
+            directionsManager.setRenderOptions({ itineraryContainer: '#directionsItinerary' }); //Specify the where to display the input panel
+            directionsManager.showInputPanel('directionsPanel');
+        });
+    }
+
+    function GetDirections() { //Clear any previously calculated directions.
+        directionsManager.clearAll();
+        directionsManager.clearDisplay(); //Create waypoints to route between.
+        var start = new Microsoft.Maps.Directions.Waypoint({ address: 'Universidade do Minho' });
+        directionsManager.addWaypoint(start);
+        var end = new Microsoft.Maps.Directions.Waypoint({
+            address: '@Html.DisplayFor(model => model.encomenda.Morada1.codPostal)'
+        });
+        directionsManager.addWaypoint(end); //Calculate directions.
+        directionsManager.calculateDirections();
+    }
+
+    function encode_utf8(s) {
+        return unescape(encodeURIComponent(s));
+    }
+
+    function decode_utf8(s) {
+        return decodeURIComponent(escape(s));
+    }
+</script>
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=[YOUR_BING_MAPS_KEY]' async defer></script>

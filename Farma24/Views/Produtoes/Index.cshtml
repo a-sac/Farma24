@@ -11,7 +11,7 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            if(this.User.IsInRole("admin") || this.User.IsInRole("staff") || this.User.IsInRole("user"))
+            if(this.User.IsInRole("user"))
             {
                 <text>
                 <a href='@Url.Action("Create", "EncomendaProdutoView", new { id = item.codBarras })'>
@@ -47,3 +47,4 @@
         </a>
     }
 </div>
+

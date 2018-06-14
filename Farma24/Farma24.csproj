@@ -160,6 +160,7 @@
     <Compile Include="Controllers\EncomendasController.cs" />
     <Compile Include="Controllers\Encomenda_has_ProdutoController.cs" />
     <Compile Include="Controllers\FaturasController.cs" />
+    <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MoradasController.cs" />
@@ -192,6 +193,7 @@
     </Compile>
     <Compile Include="Helper\LoginHelper.cs" />
     <Compile Include="Helper\UtilizadorHelper.cs" />
+    <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Encomenda.cs" />
     <Compile Include="Models\EncomendaProdutoView.cs" />
     <Compile Include="Models\RegisterView.cs" />
@@ -298,6 +300,10 @@
     <Content Include="Views\RegisterView\Index.cshtml" />
     <Content Include="Views\EncomendaProdutoView\Index.cshtml" />
     <Content Include="Views\EncomendaProdutoView\Create.cshtml" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
+    <Content Include="Views\EncomendaProdutoView\Update.cshtml" />
+    <Content Include="Views\Funcionario\Create.cshtml" />
+    <Content Include="Views\Funcionario\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

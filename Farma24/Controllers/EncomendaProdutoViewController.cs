@@ -115,8 +115,21 @@ namespace Farma24.Controllers
 
             return encomenda.First();
         }
+        public ActionResult Update()
+        {
+            var mail = User.Identity.Name;
+            var user = db.Utilizadors.Find(mail);
+            var encomenda = user.Encomendas.Where(x => x.estado.Equals("StandBy"));
+
+            if (encomenda.Any())
+            {
+                encomenda.First().estado = "Waiting";
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+
+        }
     }
-
-
 
 }

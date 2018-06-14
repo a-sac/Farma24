@@ -1,47 +1,24 @@
-﻿@model Farma24.Models.Utilizador
-@if (!Request.IsAuthenticated)
-{
-    using (Html.BeginForm("Login", "Login", FormMethod.Post))
+﻿@model Farma24.Models.Funcionario
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="container">
+    @using (Html.BeginForm("Create", "Funcionario", FormMethod.Post))
     {
-        <div class="container">
-            <div class="card card-container">
-                <img id="profile-img" class="profile-img-card" src="~/Content/Images/logo.png" />
-                <p id="profile-name" class="profile-name-card"></p>
-                @Html.ValidationSummary(true)
-                <fieldset class="form-signin">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" name="email" class="form-control" placeholder="Email address" required />
-                    <input type="password" name="password" class="form-control" placeholder="Password" required />
-                    <div id="remember" class="checkbox">
-                        <input type="checkbox" value="remember-me">Lembrar-me
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Submit">Iniciar Sessão</button>
-                </fieldset>
-                <a href="#" class="forgot-password">
-                    Esqueceu-se da palavra-passe?
-                </a>
-            </div>
-        </div>
-
-    }
-}
-else
-{
-    <div class="container">
-        <div class="card">
-            <img id="profile-img" class="profile-img-card" src="~/Content/Images/logo.png" />
-            <p id="profile-name" class="profile-name-card"></p>
-            @Html.ValidationSummary(true)
-            <div class="form-signin">
-                <div>
-                <h1 style="text-align: center"><span>De certeza que queres sair ?</span> <br /></h1>
-                </div>
-                @Html.ActionLink("Sair", "Logout", "Login", new { @class= "btn btn-lg btn-primary btn-block btn-signin", style="padding: 8px" })
-            </div>
-        </div>
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="~/Content/Images/logo.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <fieldset class="form-signin">
+            <input type="submit" value="Realizar Entrega" class="btn btn-lg btn-primary btn-block btn-signin" />
+        </fieldset>
     </div>
-}
+    }
+</div>
 
+
+</div>
 <style>
     /*
                     * Specific styles of signin component
@@ -50,11 +27,6 @@ else
                     * General styles
                     */
     body, html {
-        background: -moz-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* FF3.6+ */
-        background: -webkit-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)); /* Opera 11.10+ */
-        background: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
         min-height: 100%;
         background-attachment: fixed;
     }
@@ -198,3 +170,4 @@ else
         color: white;
     }
 </style>
+
